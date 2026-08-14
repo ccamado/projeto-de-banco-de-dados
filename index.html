@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Avisos — prática local</title>
+  <style>
+    :root {
+      --azul: #174a7e;
+      --azul-claro: #eaf2fb;
+      --texto: #1f2937;
+      --muted: #5b6574;
+      --borda: #d8dee8;
+      --fundo: #f5f7fa;
+      --branco: #ffffff;
+      --verde: #16784b;
+      --vermelho: #b3261e;
+      --amarelo: #fff7d6;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--texto);
+      background: var(--fundo);
+      line-height: 1.45;
+    }
+
+    header {
+      background: linear-gradient(135deg, #123b66, #1e639f);
+      color: white;
+      padding: 28px 20px;
+    }
+
+    header .wrap, main { max-width: 1180px; margin: 0 auto; }
+    h1 { margin: 0 0 6px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    header p { margin: 0; opacity: .95; }
+
+    main { padding: 24px 18px 40px; }
+
+    .aviso-pedagogico {
+      background: var(--amarelo);
+      border: 1px solid #e3ca64;
+      border-left: 6px solid #b69300;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+    }
+
+    .aviso-pedagogico strong { color: #5f4d00; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: minmax(300px, 420px) 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 4px 14px rgba(20, 42, 70, .07);
+    }
+
+    h2 { margin-top: 0; font-size: 1.35rem; color: #153f69; }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin: 12px 0 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 1px solid #aeb8c6;
+      border-radius: 8px;
+      padding: 10px 11px;
+      font: inherit;
+      background: white;
+    }
+
+    textarea { min-height: 95px; resize: vertical; }
+    input:focus, textarea:focus { outline: 3px solid rgba(30, 99, 159, .18); border-color: #1e639f; }
+
+    .linha-dupla {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .botoes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: .96rem;
+    }
+
+    .btn-principal { background: var(--azul); color: white; }
+    .btn-principal:hover { background: #10395f; }
+    .btn-secundario { background: #e8edf3; color: #26384d; }
+    .btn-editar { background: #e7f0fb; color: #174a7e; }
+    .btn-excluir { background: #fdebea; color: var(--vermelho); }
+
+    .modo-edicao {
+      margin: 0 0 12px;
+      display: none;
+      padding: 9px 11px;
+      border-radius: 8px;
+      background: #e9f7ef;
+      color: #155b3a;
+      font-weight: 700;
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th, td {
+      border-bottom: 1px solid var(--borda);
+      text-align: left;
+      padding: 10px 9px;
+      vertical-align: top;
+    }
+
+    th {
+      color: white;
+      background: var(--azul);
+      font-size: .92rem;
+    }
+
+    tbody tr:nth-child(even) { background: #f9fbfd; }
+    td.acoes { white-space: nowrap; }
+    td.descricao { min-width: 210px; }
+
+    .vazio {
+      color: var(--muted);
+      text-align: center;
+      padding: 24px 8px;
+    }
+
+    .rodape-card {
+      color: var(--muted);
+      font-size: .9rem;
+      margin: 12px 0 0;
+    }
+
+    .status {
+      min-height: 1.4em;
+      margin-top: 12px;
+      color: var(--verde);
+      font-weight: 700;
+    }
+
+    @media (max-width: 880px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .linha-dupla { grid-template-columns: 1fr; }
+      .card { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>Central de Avisos — versão de prática</h1>
+      <p>CEPEF • Projeto de Banco de Dados • 2º A</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="aviso-pedagogico">
+      <strong>Atenção:</strong> a tabela abaixo é uma <strong>tabela visual da página</strong>, não uma tabela de banco de dados.
+      Nesta prática, os avisos ficam no <strong>armazenamento local do navegador (localStorage)</strong>. O banco de dados real será estudado posteriormente.
+    </div>
+
+    <div class="grid">
+      <section class="card" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">1. Formulário de aviso</h2>
+        <p id="modoEdicao" class="modo-edicao">Editando aviso selecionado</p>
+
+        <form id="formAviso">
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" maxlength="120" required autocomplete="off">
+
+          <label for="descricao">Descrição:</label>
+          <textarea id="descricao" maxlength="600" required></textarea>
+
+          <div class="linha-dupla">
+            <div>
+              <label for="data">Data:</label>
+              <input type="date" id="data">
+            </div>
+            <div>
+              <label for="horario">Horário:</label>
+              <input type="time" id="horario">
+            </div>
+          </div>
+
+          <label for="responsavel">Responsável:</label>
+          <input type="text" id="responsavel" maxlength="120" required autocomplete="off">
+
+          <div class="botoes">
+            <button id="btnSalvar" class="btn-principal" type="submit">Cadastrar aviso</button>
+            <button id="btnCancelar" class="btn-secundario" type="button" hidden>Cancelar edição</button>
+          </div>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="titulo-lista">
+        <h2 id="titulo-lista">2. Tabela visual da página</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Responsável</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody id="listaAvisos"></tbody>
+          </table>
+        </div>
+        <p class="rodape-card">Cadastrar, consultar, editar e excluir são ações sobre os registros. Essas quatro operações costumam ser chamadas de CRUD, mas a sigla não é o foco desta aula.</p>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    // Recurso técnico fornecido pelo professor para esta prática.
+    // O foco da aula é observar os DADOS, e não estudar este JavaScript.
+    const CHAVE_STORAGE = 'cepef-central-avisos-v01';
+
+    const form = document.getElementById('formAviso');
+    const listaAvisos = document.getElementById('listaAvisos');
+    const btnSalvar = document.getElementById('btnSalvar');
+    const btnCancelar = document.getElementById('btnCancelar');
+    const modoEdicao = document.getElementById('modoEdicao');
+    const status = document.getElementById('status');
+
+    const campos = {
+      titulo: document.getElementById('titulo'),
+      descricao: document.getElementById('descricao'),
+      data: document.getElementById('data'),
+      horario: document.getElementById('horario'),
+      responsavel: document.getElementById('responsavel')
+    };
+
+    let avisos = carregarAvisos();
+    let idEmEdicao = null;
+
+    function carregarAvisos() {
+      try {
+        const salvo = localStorage.getItem(CHAVE_STORAGE);
+        if (!salvo) return [];
+        const dados = JSON.parse(salvo);
+        return Array.isArray(dados) ? dados : [];
+      } catch (erro) {
+        console.warn('Não foi possível carregar os avisos salvos.', erro);
+        return [];
+      }
+    }
+
+    function salvarAvisos() {
+      localStorage.setItem(CHAVE_STORAGE, JSON.stringify(avisos));
+    }
+
+    function criarId() {
+      return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    }
+
+    function escapar(texto) {
+      return String(texto ?? '')
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;')
+        .replaceAll("'", '&#039;');
+    }
+
+    function formatarData(dataISO) {
+      if (!dataISO) return '—';
+      const [ano, mes, dia] = dataISO.split('-');
+      return `${dia}/${mes}/${ano}`;
+    }
+
+    function renderizarAvisos() {
+      if (avisos.length === 0) {
+        listaAvisos.innerHTML = '<tr><td colspan="6" class="vazio">Nenhum aviso cadastrado ainda.</td></tr>';
+        return;
+      }
+
+      listaAvisos.innerHTML = avisos.map(aviso => `
+        <tr>
+          <td><strong>${escapar(aviso.titulo)}</strong></td>
+          <td class="descricao">${escapar(aviso.descricao)}</td>
+          <td>${escapar(formatarData(aviso.data))}</td>
+          <td>${escapar(aviso.horario || '—')}</td>
+          <td>${escapar(aviso.responsavel)}</td>
+          <td class="acoes">
+            <button class="btn-editar" type="button" data-acao="editar" data-id="${escapar(aviso.id)}">Editar</button>
+            <button class="btn-excluir" type="button" data-acao="excluir" data-id="${escapar(aviso.id)}">Excluir</button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function limparFormulario() {
+      form.reset();
+      idEmEdicao = null;
+      btnSalvar.textContent = 'Cadastrar aviso';
+      btnCancelar.hidden = true;
+      modoEdicao.style.display = 'none';
+      campos.titulo.focus();
+    }
+
+    function mensagem(texto) {
+      status.textContent = texto;
+      window.setTimeout(() => {
+        if (status.textContent === texto) status.textContent = '';
+      }, 3000);
+    }
+
+    form.addEventListener('submit', (evento) => {
+      evento.preventDefault();
+
+      const aviso = {
+        id: idEmEdicao || criarId(),
+        titulo: campos.titulo.value.trim(),
+        descricao: campos.descricao.value.trim(),
+        data: campos.data.value,
+        horario: campos.horario.value,
+        responsavel: campos.responsavel.value.trim()
+      };
+
+      if (!aviso.titulo || !aviso.descricao || !aviso.responsavel) {
+        mensagem('Preencha os campos obrigatórios.');
+        return;
+      }
+
+      if (idEmEdicao) {
+        const indice = avisos.findIndex(item => item.id === idEmEdicao);
+        if (indice !== -1) avisos[indice] = aviso;
+        salvarAvisos();
+        renderizarAvisos();
+        limparFormulario();
+        mensagem('Aviso atualizado.');
+      } else {
+        avisos.push(aviso);
+        salvarAvisos();
+        renderizarAvisos();
+        limparFormulario();
+        mensagem('Aviso cadastrado.');
+      }
+    });
+
+    listaAvisos.addEventListener('click', (evento) => {
+      const botao = evento.target.closest('button[data-acao]');
+      if (!botao) return;
+
+      const id = botao.dataset.id;
+      const acao = botao.dataset.acao;
+      const aviso = avisos.find(item => item.id === id);
+      if (!aviso) return;
+
+      if (acao === 'editar') {
+        idEmEdicao = id;
+        campos.titulo.value = aviso.titulo;
+        campos.descricao.value = aviso.descricao;
+        campos.data.value = aviso.data;
+        campos.horario.value = aviso.horario;
+        campos.responsavel.value = aviso.responsavel;
+        btnSalvar.textContent = 'Atualizar aviso';
+        btnCancelar.hidden = false;
+        modoEdicao.style.display = 'block';
+        campos.titulo.focus();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (acao === 'excluir') {
+        const confirmou = window.confirm(`Excluir o aviso “${aviso.titulo}”?`);
+        if (!confirmou) return;
+        avisos = avisos.filter(item => item.id !== id);
+        salvarAvisos();
+        renderizarAvisos();
+        if (idEmEdicao === id) limparFormulario();
+        mensagem('Aviso excluído.');
+      }
+    });
+
+    btnCancelar.addEventListener('click', () => {
+      limparFormulario();
+      mensagem('Edição cancelada.');
+    });
+
+    renderizarAvisos();
+  </script>
+</body>
+</html>
