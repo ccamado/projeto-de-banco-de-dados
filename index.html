@@ -38,6 +38,24 @@
     h1 { margin: 0 0 6px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
     header p { margin: 0; opacity: .95; }
 
+    .btn-download-codigo {
+      display: inline-block;
+      margin-top: 16px;
+      padding: 10px 14px;
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, .12);
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .2s ease, transform .2s ease;
+    }
+
+    .btn-download-codigo:hover {
+      background: rgba(255, 255, 255, .22);
+      transform: translateY(-1px);
+    }
+
     main { padding: 24px 18px 40px; }
 
     .aviso-pedagogico {
@@ -182,6 +200,7 @@
     <div class="wrap">
       <h1>Central de Avisos — versão de prática</h1>
       <p>CEPEF • Projeto de Banco de Dados • 2º A</p>
+      <a class="btn-download-codigo" href="./index.html" download="index.html">⬇ Baixar código-fonte desta página</a>
     </div>
   </header>
 
