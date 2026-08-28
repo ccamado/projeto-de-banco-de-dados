@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Central de Avisos atualizada com o atributo ID.">
+  <title>Central de Avisos — versão com ID</title>
+  <style>
+    :root{--azul:#174a7e;--azul-escuro:#123b66;--texto:#1f2937;--muted:#5b6574;--borda:#d8dee8;--fundo:#f5f7fa;--branco:#fff;--verde:#16784b;--vermelho:#b3261e;--amarelo:#fff7d6}*{box-sizing:border-box}body{margin:0;color:var(--texto);background:var(--fundo);font:1rem/1.45 Arial,Helvetica,sans-serif}header{padding:28px 20px;color:#fff;background:linear-gradient(135deg,var(--azul-escuro),#1e639f)}.wrap,main{max-width:1180px;margin:0 auto}h1{margin:5px 0 6px;font-size:clamp(1.8rem,3vw,2.6rem)}header p{margin:0;opacity:.95}.topo-acoes{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px}.link-topo,.download{display:inline-flex;align-items:center;min-height:42px;padding:9px 13px;border:1px solid rgba(255,255,255,.55);border-radius:8px;color:#fff;font-weight:700;text-decoration:none}.link-topo:hover,.download:hover{background:rgba(255,255,255,.14)}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffd34e;outline-offset:3px}main{padding:24px 18px 40px}.aviso{margin-bottom:20px;padding:14px 16px;border:1px solid #e3ca64;border-left:6px solid #b69300;border-radius:10px;background:var(--amarelo)}.grid{display:grid;grid-template-columns:minmax(300px,420px) 1fr;gap:20px;align-items:start}.card{min-width:0;padding:20px;border:1px solid var(--borda);border-radius:14px;background:#fff;box-shadow:0 4px 14px rgba(20,42,70,.07)}h2{margin-top:0;color:#153f69;font-size:1.35rem}label{display:block;margin:12px 0 6px;font-weight:700}input,textarea{width:100%;padding:10px 11px;border:1px solid #aeb8c6;border-radius:8px;background:#fff;font:inherit}input[readonly]{color:#153f69;background:#eaf2fb;font-weight:800}textarea{min-height:95px;resize:vertical}.linha-dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}.botoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}button{padding:10px 14px;border:0;border-radius:8px;cursor:pointer;font-size:.96rem;font-weight:700}.principal{color:#fff;background:var(--azul)}.secundario{color:#26384d;background:#e8edf3}.editar{color:var(--azul);background:#e7f0fb}.excluir{color:var(--vermelho);background:#fdebea}.modo{display:none;margin:0 0 12px;padding:9px 11px;border-radius:8px;color:#155b3a;background:#e9f7ef;font-weight:700}.table-wrap{overflow-x:auto}table{width:100%;min-width:820px;border-collapse:collapse}th,td{padding:10px 9px;border-bottom:1px solid var(--borda);text-align:left;vertical-align:top}th{color:#fff;background:var(--azul);font-size:.92rem}tbody tr:nth-child(even){background:#f9fbfd}.acoes{white-space:nowrap}.vazio{padding:24px 8px;color:var(--muted);text-align:center}.status{min-height:1.4em;margin-top:12px;color:var(--verde);font-weight:700}.nota{margin:5px 0 0;color:var(--muted);font-size:.85rem}.rodape-voltar{margin:24px 0 0;text-align:center}.rodape-voltar a{color:var(--azul);font-weight:700}@media(max-width:880px){.grid{grid-template-columns:1fr}}@media(max-width:520px){.linha-dupla{grid-template-columns:1fr}.card{padding:16px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topo-acoes">
+        <a class="link-topo" href="index.html">← Voltar para todas as aulas</a>
+        <a class="download" href="central-avisos-com-id.html" download="central-avisos-com-id.html">⬇ Baixar código-fonte</a>
+      </div>
+      <h1>Central de Avisos — versão com ID</h1>
+      <p>CEPEF · Projeto de Banco de Dados · 2º A</p>
+    </div>
+  </header>
+  <main>
+    <div class="aviso"><strong>Novidade desta versão:</strong> cada aviso recebe um <strong>ID numérico, obrigatório e único</strong>. O valor é gerado automaticamente e permite distinguir registros, mesmo quando possuem títulos iguais.</div>
+    <div class="grid">
+      <section class="card" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">1. Formulário de aviso</h2>
+        <p id="modoEdicao" class="modo">Editando o aviso selecionado</p>
+        <form id="formAviso">
+          <label for="idAviso">ID do aviso:</label>
+          <input type="number" id="idAviso" readonly aria-describedby="ajudaId">
+          <p id="ajudaId" class="nota">Gerado automaticamente. Não pode repetir nem ficar vazio.</p>
+          <label for="titulo">Título:</label>
+          <input type="text" id="titulo" maxlength="120" required autocomplete="off">
+          <label for="descricao">Descrição:</label>
+          <textarea id="descricao" maxlength="600" required></textarea>
+          <div class="linha-dupla">
+            <div><label for="data">Data:</label><input type="date" id="data"></div>
+            <div><label for="horario">Horário:</label><input type="time" id="horario"></div>
+          </div>
+          <label for="responsavel">Responsável:</label>
+          <input type="text" id="responsavel" maxlength="120" required autocomplete="off">
+          <div class="botoes"><button id="btnSalvar" class="principal" type="submit">Cadastrar aviso</button><button id="btnCancelar" class="secundario" type="button" hidden>Cancelar edição</button></div>
+          <div id="status" class="status" role="status" aria-live="polite"></div>
+        </form>
+      </section>
+      <section class="card" aria-labelledby="titulo-lista">
+        <h2 id="titulo-lista">2. Registros com identificação</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">ID</th><th scope="col">Título</th><th scope="col">Descrição</th><th scope="col">Data</th><th scope="col">Horário</th><th scope="col">Responsável</th><th scope="col">Ações</th></tr></thead>
+            <tbody id="listaAvisos"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+    <p class="rodape-voltar"><a href="index.html">← Voltar para o início</a></p>
+  </main>
+  <script>
+    const CHAVE_STORAGE='cepef-central-avisos-com-id-v01';
+    const form=document.getElementById('formAviso');
+    const listaAvisos=document.getElementById('listaAvisos');
+    const btnSalvar=document.getElementById('btnSalvar');
+    const btnCancelar=document.getElementById('btnCancelar');
+    const modoEdicao=document.getElementById('modoEdicao');
+    const status=document.getElementById('status');
+    const campos={id:document.getElementById('idAviso'),titulo:document.getElementById('titulo'),descricao:document.getElementById('descricao'),data:document.getElementById('data'),horario:document.getElementById('horario'),responsavel:document.getElementById('responsavel')};
+    let avisos=carregarAvisos();let idEmEdicao=null;
+    function carregarAvisos(){try{const salvo=localStorage.getItem(CHAVE_STORAGE);if(!salvo)return[];const dados=JSON.parse(salvo);return Array.isArray(dados)?dados:[]}catch(erro){console.warn('Não foi possível carregar os avisos.',erro);return[]}}
+    function salvarAvisos(){localStorage.setItem(CHAVE_STORAGE,JSON.stringify(avisos))}
+    function proximoId(){return avisos.length===0?1:Math.max(...avisos.map(aviso=>Number(aviso.id)||0))+1}
+    function escapar(texto){return String(texto??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;')}
+    function formatarData(dataISO){if(!dataISO)return'—';const[ano,mes,dia]=dataISO.split('-');return`${dia}/${mes}/${ano}`}
+    function prepararNovoId(){campos.id.value=proximoId()}
+    function renderizarAvisos(){if(avisos.length===0){listaAvisos.innerHTML='<tr><td colspan="7" class="vazio">Nenhum aviso cadastrado ainda.</td></tr>';return}listaAvisos.innerHTML=avisos.map(aviso=>`<tr><td><strong>${escapar(aviso.id)}</strong></td><td><strong>${escapar(aviso.titulo)}</strong></td><td>${escapar(aviso.descricao)}</td><td>${escapar(formatarData(aviso.data))}</td><td>${escapar(aviso.horario||'—')}</td><td>${escapar(aviso.responsavel)}</td><td class="acoes"><button class="editar" type="button" data-acao="editar" data-id="${escapar(aviso.id)}">Editar</button> <button class="excluir" type="button" data-acao="excluir" data-id="${escapar(aviso.id)}">Excluir</button></td></tr>`).join('')}
+    function limparFormulario(){form.reset();idEmEdicao=null;btnSalvar.textContent='Cadastrar aviso';btnCancelar.hidden=true;modoEdicao.style.display='none';prepararNovoId();campos.titulo.focus()}
+    function mensagem(texto){status.textContent=texto;window.setTimeout(()=>{if(status.textContent===texto)status.textContent=''},3000)}
+    form.addEventListener('submit',evento=>{evento.preventDefault();const aviso={id:Number(campos.id.value),titulo:campos.titulo.value.trim(),descricao:campos.descricao.value.trim(),data:campos.data.value,horario:campos.horario.value,responsavel:campos.responsavel.value.trim()};if(!aviso.id||!aviso.titulo||!aviso.descricao||!aviso.responsavel){mensagem('Preencha os campos obrigatórios.');return}if(idEmEdicao!==null){const indice=avisos.findIndex(item=>Number(item.id)===idEmEdicao);if(indice!==-1)avisos[indice]=aviso;salvarAvisos();renderizarAvisos();limparFormulario();mensagem('Aviso atualizado sem alterar seu ID.')}else{if(avisos.some(item=>Number(item.id)===aviso.id)){mensagem('Este ID já existe.');prepararNovoId();return}avisos.push(aviso);salvarAvisos();renderizarAvisos();limparFormulario();mensagem('Aviso cadastrado com ID único.')}});
+    listaAvisos.addEventListener('click',evento=>{const botao=evento.target.closest('button[data-acao]');if(!botao)return;const id=Number(botao.dataset.id);const aviso=avisos.find(item=>Number(item.id)===id);if(!aviso)return;if(botao.dataset.acao==='editar'){idEmEdicao=id;campos.id.value=aviso.id;campos.titulo.value=aviso.titulo;campos.descricao.value=aviso.descricao;campos.data.value=aviso.data;campos.horario.value=aviso.horario;campos.responsavel.value=aviso.responsavel;btnSalvar.textContent='Atualizar aviso';btnCancelar.hidden=false;modoEdicao.style.display='block';campos.titulo.focus();window.scrollTo({top:0,behavior:'smooth'})}if(botao.dataset.acao==='excluir'){const confirmou=window.confirm(`Excluir o aviso de ID ${aviso.id}?`);if(!confirmou)return;avisos=avisos.filter(item=>Number(item.id)!==id);salvarAvisos();renderizarAvisos();if(idEmEdicao===id)limparFormulario();else prepararNovoId();mensagem('Aviso excluído.')}});
+    btnCancelar.addEventListener('click',()=>{limparFormulario();mensagem('Edição cancelada.')});
+    renderizarAvisos();prepararNovoId();
+  </script>
+</body>
+</html>
+

@@ -12,6 +12,7 @@ O conteúdo está organizado no `index.html` e preparado para publicação via G
 
 - `index.html` — portal com a lista cronológica das aulas;
 - `central-avisos-local.html` — prática inicial da Central de Avisos;
+- `central-avisos-com-id.html` — evolução do formulário com ID visível e único;
 - `aulas/` — páginas das aulas organizadas por data e tempo;
 - `css/style.css` — estilos compartilhados do portal e das aulas.
 
