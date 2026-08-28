@@ -38,6 +38,10 @@
     h1 { margin: 0 0 6px; font-size: clamp(1.8rem, 3vw, 2.6rem); }
     header p { margin: 0; opacity: .95; }
 
+    .voltar-aulas { display: inline-block; margin-bottom: 16px; color: white; font-weight: 700; text-decoration: none; }
+    .voltar-aulas:hover { text-decoration: underline; }
+    .voltar-aulas:focus-visible { outline: 3px solid #ffd34e; outline-offset: 3px; }
+
     main { padding: 24px 18px 40px; }
 
     .aviso-pedagogico {
@@ -59,6 +63,7 @@
     }
 
     .card {
+      min-width: 0;
       background: var(--branco);
       border: 1px solid var(--borda);
       border-radius: 14px;
@@ -180,6 +185,7 @@
 <body>
   <header>
     <div class="wrap">
+      <a class="voltar-aulas" href="index.html">← Voltar para todas as aulas</a>
       <h1>Central de Avisos — versão de prática</h1>
       <p>CEPEF • Projeto de Banco de Dados • 2º A</p>
     </div>
@@ -245,6 +251,7 @@
         <p class="rodape-card">Cadastrar, consultar, editar e excluir são ações sobre os registros. Essas quatro operações costumam ser chamadas de CRUD, mas a sigla não é o foco desta aula.</p>
       </section>
     </div>
+    <p style="margin: 24px 0 0; text-align: center;"><a href="index.html" style="color: #174a7e; font-weight: 700;">← Voltar para o início</a></p>
   </main>
 
   <script>
@@ -418,3 +425,4 @@
   </script>
 </body>
 </html>
+

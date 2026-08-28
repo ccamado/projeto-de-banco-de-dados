@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aula sobre chaves, domínio e integridade dos dados.">
+  <title>Chaves, domínio e integridade — 28/08/2026</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="pagina-aula">
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="cabecalho-site">
+    <div class="container">
+      <nav class="navegacao-topo" aria-label="Navegação principal"><a href="../index.html">← Voltar para todas as aulas</a></nav>
+      <p class="instituicao">CEPEF · Projeto de Banco de Dados · 2º A</p>
+      <h1>Chaves, domínio <span>e integridade</span></h1>
+      <p class="subtitulo">Como distinguir registros e manter os dados coerentes.</p>
+      <div class="metadados-aula" aria-label="Informações da aula">
+        <span class="badge">28/08/2026</span><span class="badge">1º TEMPO</span><span class="badge badge-local">SALA</span><span class="badge">07:00 às 07:50</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="bloco" aria-labelledby="problema">
+      <h2 id="problema">1. O problema</h2>
+      <p>Observe dois registros da Central de Avisos:</p>
+      <div class="comparacao">
+        <div class="registro"><strong>id?</strong><span>Título: Reunião</span></div>
+        <div class="registro"><strong>id?</strong><span>Título: Reunião</span></div>
+      </div>
+      <p class="pergunta">Como saber exatamente qual registro queremos consultar, alterar ou excluir?</p>
+      <p>O título ajuda a entender o aviso, mas pode se repetir. Precisamos de uma informação criada especialmente para distinguir cada ocorrência.</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="identificador">
+      <h2 id="identificador">2. Identificador</h2>
+      <p>Um <strong>identificador</strong> é uma informação que permite reconhecer uma ocorrência sem confundi-la com outra.</p>
+      <div class="exemplo">
+        <h3>Exemplo</h3>
+        <div class="comparacao">
+          <div class="registro"><span>id_aviso: <strong>1</strong></span><span>Título: Reunião</span></div>
+          <div class="registro"><span>id_aviso: <strong>2</strong></span><span>Título: Reunião</span></div>
+        </div>
+        <p>Os títulos são iguais, mas os identificadores mostram que são registros diferentes.</p>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="chave-primaria">
+      <h2 id="chave-primaria">3. Chave primária</h2>
+      <div class="conceito">
+        <h3>Definição</h3>
+        <p><strong>Chave primária</strong> é o atributo ou conjunto de atributos usado para identificar de forma única cada registro.</p>
+      </div>
+      <div class="registro"><span>id_aviso = 1</span><span>id_aviso = 2</span></div>
+      <p>Neste exemplo, <code>id_aviso</code> é a chave primária. Cada aviso recebe um valor que o diferencia dos demais.</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="unicidade">
+      <h2 id="unicidade">4. Unicidade</h2>
+      <p><strong>Unicidade</strong> significa que o valor usado para identificar um registro não pode se repetir.</p>
+      <div class="comparacao">
+        <div class="valido"><strong>Identificação adequada</strong><div class="registro"><span>id_aviso: 1</span><span>id_aviso: 2</span></div></div>
+        <div class="invalido"><strong>Identificação repetida</strong><div class="registro"><span>id_aviso: 1</span><span>id_aviso: 1</span></div></div>
+      </div>
+      <p class="pergunta">Se os dois avisos têm identificação 1, qual deles seria alterado?</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="dominio">
+      <h2 id="dominio">5. Domínio dos dados</h2>
+      <p>O <strong>domínio</strong> define quais valores são esperados e aceitos para um campo. Uma data deve receber uma data possível; um horário deve representar um horário possível.</p>
+      <div class="comparacao">
+        <div class="valido"><strong>Adequados</strong><div class="registro"><span>data: 28/08/2026</span><span>horário: 09:40</span></div></div>
+        <div class="invalido"><strong>Inadequados</strong><div class="registro"><span>data: banana</span><span>horário: 25:90</span></div></div>
+      </div>
+      <p class="pergunta">Que tipo de valor o campo “responsável” deveria aceitar?</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="obrigatoriedade">
+      <h2 id="obrigatoriedade">6. Obrigatoriedade</h2>
+      <p>Alguns campos precisam ser preenchidos para que o registro faça sentido. Outros podem ser opcionais, dependendo das regras combinadas para o sistema.</p>
+      <div class="exemplo">
+        <h3>Na Central de Avisos</h3>
+        <ul>
+          <li>Um aviso sem título seria compreensível?</li>
+          <li>A data deve ser sempre obrigatória ou existem avisos sem data definida?</li>
+          <li>Quem decide essas regras? A equipe que conhece o objetivo do sistema.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bloco" aria-labelledby="integridade">
+      <h2 id="integridade">7. Integridade</h2>
+      <div class="conceito">
+        <h3>Ideia principal</h3>
+        <p><strong>Integridade</strong> é o conjunto de regras usado para manter os dados válidos, completos e coerentes.</p>
+      </div>
+      <p>Unicidade, domínio e obrigatoriedade são exemplos de decisões que ajudam a proteger a qualidade dos dados.</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="integridade-entidade">
+      <h2 id="integridade-entidade">8. Integridade de entidade</h2>
+      <p>Cada registro precisa possuir uma identificação <strong>válida e única</strong>. A identificação não pode estar vazia e não pode ser compartilhada por dois registros.</p>
+      <div class="alerta"><p><strong>Atenção:</strong> sem uma identificação válida, o sistema não consegue distinguir aquela ocorrência com segurança.</p></div>
+    </section>
+
+    <section class="bloco" aria-labelledby="atividade">
+      <h2 id="atividade">9. Atividade rápida</h2>
+      <p>Para cada situação, identifique o problema e escreva a regra que poderia evitá-lo.</p>
+      <ol>
+        <li>Dois avisos foram cadastrados com <code>id_aviso = 7</code>.</li>
+        <li>O campo data recebeu o valor <code>semana que vem talvez</code>.</li>
+        <li>Um aviso foi salvo sem título.</li>
+        <li>O campo horário recebeu <code>18:30</code>. Há algum problema?</li>
+      </ol>
+      <div class="atividade"><h3>Verifique sua aprendizagem</h3><p>Classifique cada caso como: <strong>chave repetida</strong>, <strong>dado inválido</strong>, <strong>campo importante vazio</strong> ou <strong>dado adequado</strong>.</p></div>
+    </section>
+
+    <section class="bloco resumo" aria-labelledby="resumo">
+      <h2 id="resumo">Resumo para o caderno</h2>
+      <dl>
+        <dt><strong>CHAVE PRIMÁRIA</strong></dt><dd>Atributo ou conjunto de atributos que identifica cada registro de forma única.</dd>
+        <dt><strong>DOMÍNIO</strong></dt><dd>Conjunto de valores esperados e aceitos para um campo.</dd>
+        <dt><strong>INTEGRIDADE</strong></dt><dd>Conjunto de regras que mantém os dados coerentes.</dd>
+        <dt><strong>INTEGRIDADE DE ENTIDADE</strong></dt><dd>Cada registro deve possuir identificação válida e única.</dd>
+        <dt><strong>OBRIGATORIEDADE</strong></dt><dd>Define se um campo precisa ser preenchido.</dd>
+      </dl>
+    </section>
+
+    <nav class="navegacao-aulas" aria-label="Navegação entre aulas">
+      <a class="botao-secundario" href="../index.html">← Voltar para o início</a>
+      <a class="botao proxima" href="2026-08-28-2o-tempo.html">Próxima aula: Dicionário de Dados →</a>
+    </nav>
+  </main>
+  <footer class="rodape-site"><p>CEPEF · Projeto de Banco de Dados · 2º A · Prof. Claudio Amado</p></footer>
+</body>
+</html>
+

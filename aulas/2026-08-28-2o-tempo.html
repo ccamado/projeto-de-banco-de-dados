@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aula introdutória sobre Dicionário de Dados.">
+  <title>Dicionário de Dados — 28/08/2026</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="pagina-aula">
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="cabecalho-site">
+    <div class="container">
+      <nav class="navegacao-topo" aria-label="Navegação principal"><a href="../index.html">← Voltar para todas as aulas</a></nav>
+      <p class="instituicao">CEPEF · Projeto de Banco de Dados · 2º A</p>
+      <h1>Dicionário <span>de Dados</span></h1>
+      <p class="subtitulo">Registrar as decisões tomadas sobre os campos do projeto.</p>
+      <div class="metadados-aula" aria-label="Informações da aula">
+        <span class="badge">28/08/2026</span><span class="badge">2º TEMPO</span><span class="badge badge-local">SALA</span><span class="badge">07:50 às 08:40</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="bloco" aria-labelledby="ponto-partida">
+      <h2 id="ponto-partida">1. Das regras para a documentação</h2>
+      <p><strong>Já descobrimos que os dados precisam obedecer regras. Agora precisamos registrar essas decisões.</strong></p>
+      <p>Se uma regra ficar apenas na memória de uma pessoa, outras equipes podem entender o campo de outra maneira. Um documento comum ajuda todos a trabalhar com os mesmos significados.</p>
+      <div class="conceito"><h3>Dicionário de Dados</h3><p>Documento que explica os campos de um sistema e registra as regras definidas para eles.</p></div>
+    </section>
+
+    <section class="bloco" aria-labelledby="estrutura">
+      <h2 id="estrutura">2. O que registrar</h2>
+      <p>Para começar, nosso Dicionário de Dados terá cinco informações:</p>
+      <ul>
+        <li><strong>Campo:</strong> nome usado para reconhecer o dado.</li>
+        <li><strong>Significado:</strong> o que aquele campo representa.</li>
+        <li><strong>Tipo esperado:</strong> número, texto, data, horário ou sim/não.</li>
+        <li><strong>Obrigatório?</strong> informa se o preenchimento é necessário.</li>
+        <li><strong>Regra:</strong> condição que o valor deve respeitar.</li>
+      </ul>
+    </section>
+
+    <section class="bloco" aria-labelledby="exemplos">
+      <h2 id="exemplos">3. Exemplos de documentação</h2>
+      <div class="tabela-responsiva">
+        <table>
+          <caption>Exemplos parciais da Central de Avisos</caption>
+          <thead><tr><th scope="col">Campo</th><th scope="col">Significado</th><th scope="col">Tipo esperado</th><th scope="col">Obrigatório?</th><th scope="col">Regra</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">id_aviso</th><td>Identificador do aviso</td><td>Número</td><td>Sim</td><td>Não deve repetir.</td></tr>
+            <tr><th scope="row">titulo</th><td>Título principal</td><td>Texto</td><td>Sim</td><td>Não deve ficar vazio.</td></tr>
+            <tr><th scope="row">data_evento</th><td>Data prevista para o evento</td><td>Data</td><td>Depende</td><td>Quando informada, precisa representar uma data válida.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="exemplo"><p>O tipo esperado é conceitual: ele descreve a natureza do valor sem entrar em detalhes de implementação.</p></div>
+    </section>
+
+    <section class="bloco" aria-labelledby="atividade">
+      <h2 id="atividade">4. Atividade — complete as decisões</h2>
+      <p>Converse com sua equipe e complete as lacunas. Não existe resposta automática: a justificativa deve fazer sentido para a Central de Avisos.</p>
+      <div class="tabela-responsiva">
+        <table>
+          <caption>Dicionário parcial para análise</caption>
+          <thead><tr><th scope="col">Campo</th><th scope="col">Significado</th><th scope="col">Tipo esperado</th><th scope="col">Obrigatório?</th><th scope="col">Regra</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">descricao</th><td>Detalhes do aviso</td><td><span class="lacuna">preencher</span></td><td><span class="lacuna">preencher</span></td><td>Deve ser compreensível para o leitor.</td></tr>
+            <tr><th scope="row">horario</th><td><span class="lacuna">preencher</span></td><td>Horário</td><td>Depende</td><td><span class="lacuna">preencher</span></td></tr>
+            <tr><th scope="row">responsavel</th><td>Pessoa responsável pelo aviso</td><td><span class="lacuna">preencher</span></td><td><span class="lacuna">preencher</span></td><td>Não deve conter apenas espaços.</td></tr>
+            <tr><th scope="row"><span class="lacuna">campo</span></th><td>Indica se o aviso está ativo</td><td>Sim/não</td><td>Sim</td><td>Deve aceitar somente uma das duas opções.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="atividade"><h3>Verifique sua aprendizagem</h3><ol><li>Qual coluna explica o que o campo representa?</li><li>Em qual coluna registramos que um valor não pode ficar vazio?</li><li>Por que duas equipes precisam usar os mesmos nomes?</li></ol></div>
+      <p class="pergunta">Importante: hoje não vamos completar todos os campos. Estamos praticando como documentar decisões.</p>
+    </section>
+
+    <section class="bloco" aria-labelledby="der-dicionario">
+      <h2 id="der-dicionario">5. DER e Dicionário: funções diferentes</h2>
+      <div class="comparacao">
+        <div class="conceito"><h3>DER</h3><p>Mostra visualmente a estrutura: entidades e atributos.</p></div>
+        <div class="conceito"><h3>Dicionário</h3><p>Explica os dados e registra suas regras.</p></div>
+      </div>
+      <p>Os dois materiais devem concordar nos nomes e nos campos, mas cada um comunica uma parte diferente do projeto.</p>
+    </section>
+
+    <section class="bloco resumo" aria-labelledby="resumo">
+      <h2 id="resumo">Resumo para o caderno</h2>
+      <h3>DICIONÁRIO DE DADOS</h3>
+      <p>Documento que registra informações sobre os campos de um sistema.</p>
+      <p>Para cada campo podemos registrar:</p>
+      <ul><li>nome;</li><li>significado;</li><li>tipo esperado;</li><li>obrigatoriedade;</li><li>regra.</li></ul>
+      <p><strong>DER</strong> → mostra visualmente a estrutura.</p>
+      <p><strong>Dicionário</strong> → explica os dados e suas regras.</p>
+    </section>
+
+    <nav class="navegacao-aulas" aria-label="Navegação entre aulas">
+      <a class="botao-secundario" href="2026-08-28-1o-tempo.html">← Aula anterior</a>
+      <a class="botao-secundario" href="../index.html">Voltar para o início</a>
+      <a class="botao proxima" href="2026-08-28-4o-tempo.html">Próxima aula: prática →</a>
+    </nav>
+  </main>
+  <footer class="rodape-site"><p>CEPEF · Projeto de Banco de Dados · 2º A · Prof. Claudio Amado</p></footer>
+</body>
+</html>
+

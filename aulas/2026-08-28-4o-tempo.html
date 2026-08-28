@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Roteiro de laboratório para revisar o DER e construir o Dicionário de Dados.">
+  <title>Prática — DER + Dicionário de Dados — 28/08/2026</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="pagina-aula">
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="cabecalho-site">
+    <div class="container">
+      <nav class="navegacao-topo" aria-label="Navegação principal"><a href="../index.html">← Voltar para todas as aulas</a></nav>
+      <p class="instituicao">CEPEF · Projeto de Banco de Dados · 2º A</p>
+      <h1>Prática — DER + <span>Dicionário de Dados</span></h1>
+      <p class="subtitulo">Roteiro de laboratório para aplicar as decisões estudadas.</p>
+      <div class="metadados-aula" aria-label="Informações da aula">
+        <span class="badge">28/08/2026</span><span class="badge">4º TEMPO</span><span class="badge badge-laboratorio">LABORATÓRIO</span><span class="badge">09:40 às 10:30</span>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <section class="bloco atividade" aria-labelledby="objetivo">
+      <h2 id="objetivo">Objetivo da prática</h2>
+      <p>Revisar o DER da equipe, adicionar identificadores, iniciar o Dicionário de Dados e testar se as regras escolhidas são compreensíveis.</p>
+      <p><strong>Trabalhe por etapas e marque cada item concluído.</strong></p>
+    </section>
+
+    <section class="bloco" aria-labelledby="etapa-1">
+      <h2 id="etapa-1">Etapa 1 — Revisar o DER v1</h2>
+      <p>Abra a versão atual do DER da Central de Avisos e faça uma leitura antes de editar.</p>
+      <ul class="checklist">
+        <li>As entidades fazem sentido?</li>
+        <li>Os atributos estão corretos?</li>
+        <li>Os nomes estão claros?</li>
+        <li>Existe atributo mal posicionado?</li>
+      </ul>
+      <div class="atividade"><h3>Checkpoint</h3><p>Registre pelo menos uma decisão: manter, renomear, mover ou retirar um atributo. Escreva o motivo.</p></div>
+    </section>
+
+    <section class="bloco" aria-labelledby="etapa-2">
+      <h2 id="etapa-2">Etapa 2 — Adicionar identificadores</h2>
+      <p>Inclua um atributo de identificação para cada entidade que precisa distinguir suas ocorrências.</p>
+      <div class="comparacao">
+        <div class="exemplo"><h3>AVISO — antes</h3><div class="registro"><span>titulo</span><span>descricao</span><span>data_evento</span></div></div>
+        <div class="conceito"><h3>AVISO — depois</h3><div class="registro"><strong>id_aviso</strong><span>titulo</span><span>descricao</span><span>data_evento</span></div></div>
+      </div>
+      <ul class="checklist"><li>O identificador possui nome claro?</li><li>Ele está na entidade correta?</li><li>A equipe sabe explicar por que ele é necessário?</li></ul>
+    </section>
+
+    <section class="bloco" aria-labelledby="etapa-3">
+      <h2 id="etapa-3">Etapa 3 — Construir o Dicionário de Dados v1</h2>
+      <p>Para cada atributo presente no DER, registre:</p>
+      <ul><li>entidade;</li><li>campo;</li><li>significado;</li><li>tipo esperado;</li><li>obrigatoriedade;</li><li>regra.</li></ul>
+      <div class="tabela-responsiva">
+        <table>
+          <caption>Modelo para a equipe começar</caption>
+          <thead><tr><th scope="col">Entidade</th><th scope="col">Campo</th><th scope="col">Significado</th><th scope="col">Tipo esperado</th><th scope="col">Obrigatório?</th><th scope="col">Regra</th></tr></thead>
+          <tbody><tr><td>AVISO</td><td>id_aviso</td><td>Identificador do aviso</td><td>Número</td><td>Sim</td><td>Não deve repetir.</td></tr><tr><td><span class="lacuna">entidade</span></td><td><span class="lacuna">campo</span></td><td><span class="lacuna">significado</span></td><td><span class="lacuna">tipo</span></td><td><span class="lacuna">resposta</span></td><td><span class="lacuna">regra</span></td></tr></tbody>
+        </table>
+      </div>
+      <div class="atividade"><h3>Checkpoint</h3><p>Antes de avançar, peça para outra pessoa ler duas linhas. Ela entendeu os campos sem precisar adivinhar?</p></div>
+    </section>
+
+    <section class="bloco" aria-labelledby="etapa-4">
+      <h2 id="etapa-4">Etapa 4 — Testar as regras</h2>
+      <p>Escolha pelo menos três campos do Dicionário. Para cada um, crie um exemplo válido e um exemplo inválido.</p>
+      <div class="comparacao">
+        <div class="valido"><strong>Exemplo válido</strong><div class="registro"><span>Campo: horario</span><span>Valor: 09:40</span></div></div>
+        <div class="invalido"><strong>Exemplo inválido</strong><div class="registro"><span>Campo: horario</span><span>Valor: 25:90</span></div></div>
+      </div>
+      <p class="pergunta">Qual regra foi quebrada?</p>
+      <ul class="checklist"><li>Campo 1 testado com dois exemplos.</li><li>Campo 2 testado com dois exemplos.</li><li>Campo 3 testado com dois exemplos.</li><li>A equipe explicou a regra quebrada em cada caso.</li></ul>
+    </section>
+
+    <section class="bloco" aria-labelledby="etapa-5">
+      <h2 id="etapa-5">Etapa 5 — Conferir DER × Dicionário</h2>
+      <p>Coloque os dois materiais lado a lado e confira:</p>
+      <ul class="checklist"><li>Todo atributo do DER aparece no Dicionário?</li><li>Existe campo no Dicionário que não existe mais no DER?</li><li>Os nomes são iguais?</li><li>As regras estão compreensíveis?</li></ul>
+      <div class="alerta"><p><strong>Se houver diferença:</strong> decidam qual material representa a escolha atual e atualizem o outro. Os dois precisam contar a mesma história.</p></div>
+    </section>
+
+    <section class="bloco entrega" aria-labelledby="entrega">
+      <h2 id="entrega">ENTREGA 03 — CENTRAL DE AVISOS v0.3</h2>
+      <p>Entregar ao final da atividade:</p>
+      <ol><li><strong>DER revisado;</strong></li><li><strong>Dicionário de Dados v1;</strong></li><li><strong>justificativa das principais regras.</strong></li></ol>
+      <ul class="checklist"><li>Arquivos identificados com turma e equipe.</li><li>Nomes legíveis e coerentes.</li><li>Materiais conferidos antes da entrega.</li></ul>
+    </section>
+
+    <section class="bloco resumo" aria-labelledby="resumo">
+      <h2 id="resumo">Resumo para o caderno</h2>
+      <p>Hoje aplicamos as regras estudadas no projeto.</p>
+      <p><strong>DER</strong> → mostra entidades e atributos.</p>
+      <p><strong>IDENTIFICADOR</strong> → ajuda a distinguir as ocorrências.</p>
+      <p><strong>DICIONÁRIO DE DADOS</strong> → explica os campos e suas regras.</p>
+      <p>Ao revisar devemos verificar:</p>
+      <ul><li>significado;</li><li>tipo esperado;</li><li>obrigatoriedade;</li><li>validade;</li><li>coerência entre DER e Dicionário.</li></ul>
+    </section>
+
+    <nav class="navegacao-aulas" aria-label="Navegação entre aulas">
+      <a class="botao-secundario" href="2026-08-28-2o-tempo.html">← Aula anterior</a>
+      <a class="botao proxima" href="../index.html">Voltar para o início</a>
+    </nav>
+  </main>
+  <footer class="rodape-site"><p>CEPEF · Projeto de Banco de Dados · 2º A · Prof. Claudio Amado</p></footer>
+</body>
+</html>
+
