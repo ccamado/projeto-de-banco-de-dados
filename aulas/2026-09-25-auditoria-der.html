@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Aula prática de auditoria do DER da Central de Avisos — Projeto de Banco de Dados — 2º A — CEPEF — 25/09/2026.">
+<title>25/09/2026 — Auditoria do DER | Projeto de Banco de Dados</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  .hero-pratica{background:#0f172a;color:#fff;border-radius:18px;padding:26px;margin-bottom:24px}
+  .hero-pratica p{color:#cbd5e1;margin:.35rem 0}
+  .etiquetas{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .etiqueta{display:inline-block;padding:6px 10px;border-radius:999px;background:#1e293b;color:#e2e8f0;font-size:.82rem;font-weight:700}
+  .etiqueta.destaque{background:#14532d;color:#dcfce7}
+  .grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+  .painel{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:20px;margin-bottom:18px}
+  .painel h2,.painel h3{margin-top:0}
+  .passos{counter-reset:passo;list-style:none;padding:0}
+  .passos li{counter-increment:passo;margin:12px 0;padding:12px 12px 12px 48px;border-left:4px solid #2563eb;background:#eff6ff;position:relative;border-radius:8px}
+  .passos li:before{content:counter(passo);position:absolute;left:12px;top:11px;width:24px;height:24px;border-radius:50%;background:#2563eb;color:#fff;display:grid;place-items:center;font-weight:800}
+  .caso{border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin:10px 0;background:#f8fafc}
+  .caso strong{color:#0f172a}
+  .recursos a{display:block;margin:8px 0;padding:10px 12px;border-radius:10px;background:#f1f5f9;text-decoration:none;font-weight:700}
+  .alerta{background:#fff7ed;border-left:4px solid #ea580c;padding:14px;border-radius:10px}
+  .ok{background:#ecfdf5;border-left:4px solid #16a34a;padding:14px;border-radius:10px}
+  table{width:100%;border-collapse:collapse}
+  th,td{border:1px solid #cbd5e1;padding:8px;text-align:left;vertical-align:top}
+  th{background:#e2e8f0}
+  .voltar{display:inline-block;margin:10px 0 20px}
+</style>
+</head>
+<body>
+<a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+<header class="cabecalho-site">
+  <div class="container">
+    <p class="instituicao">CEPEF · Técnico em Informática para Internet</p>
+    <h1>Projeto de Banco de Dados — <span>Aula prática</span></h1>
+    <p class="subtitulo">2º A · Prof. Claudio Amado · 25/09/2026</p>
+  </div>
+</header>
+
+<main id="conteudo" class="container conteudo-principal">
+  <a class="voltar" href="../index.html">← Voltar ao índice da disciplina</a>
+
+  <section class="hero-pratica">
+    <h2>Auditoria do DER da Central de Avisos</h2>
+    <p><strong>Natureza da data:</strong> Pré-Conselho/APC — sem conteúdo novo.</p>
+    <p><strong>Tempos:</strong> 1º (07:00–07:50), 2º (07:50–08:40) e 4º (09:40–10:30).</p>
+    <p><strong>Missão:</strong> testar um DER com erros intencionais, registrar evidências, corrigir o modelo e executar os testes novamente.</p>
+    <div class="etiquetas">
+      <span class="etiqueta destaque">LABORATÓRIO</span>
+      <span class="etiqueta">150 min</span>
+      <span class="etiqueta">Dupla ou trio</span>
+      <span class="etiqueta">Sem instalação</span>
+    </div>
+  </section>
+
+  <section class="painel">
+    <h2>Ferramenta da prática</h2>
+    <div class="grade">
+      <div>
+        <p><strong>Ferramenta:</strong> diagrams.net (draw.io)</p>
+        <p><strong>Acesso:</strong> gratuito e sem login.</p>
+        <p><strong>Uso na aula:</strong> abrir o DER-base, corrigir entidades, atributos e cardinalidades e salvar o DER final em formato <code>.drawio</code>.</p>
+      </div>
+      <div class="recursos">
+        <a href="https://app.diagrams.net/" target="_blank" rel="noopener">Abrir diagrams.net ↗</a>
+        <a href="https://www.diagrams.net/doc/" target="_blank" rel="noopener">Documentação oficial ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="painel recursos">
+    <h2>Recursos da prática</h2>
+    <a href="recursos/2026-09-25-der-base-com-erros.drawio" download>⬇ Baixar DER-base com erros (.drawio)</a>
+    <a href="recursos/2026-09-25-matriz-auditoria.csv" download>⬇ Baixar matriz de auditoria (.csv)</a>
+    <a href="recursos/2026-09-25-atividade-auditoria.md" download>⬇ Baixar atividade completa (.md)</a>
+    <a href="https://docs.google.com/document/d/1aNpoqCCj6UQgFC7I-afxplCu3mULuatgp-GD13GHzR0/edit" target="_blank" rel="noopener">Abrir atividade no Google Docs ↗</a>
+  </section>
+
+  <section class="painel">
+    <h2>Como executar</h2>
+    <ol class="passos">
+      <li>Baixe o DER-base e abra o arquivo no diagrams.net.</li>
+      <li>Leia cada caso de teste antes de modificar o modelo.</li>
+      <li>Na matriz, registre <strong>PASSOU</strong> somente quando o DER representar a situação sem contradição.</li>
+      <li>Quando houver falha, registre a evidência, proponha uma correção e altere o DER.</li>
+      <li>Repita o mesmo teste após a alteração e registre o resultado do reteste.</li>
+      <li>No final, salve o DER corrigido e emita o parecer técnico da equipe.</li>
+    </ol>
+    <div class="alerta"><strong>Regra:</strong> nenhuma alteração vale sem uma justificativa baseada em uma regra ou em um teste.</div>
+  </section>
+
+  <section class="painel">
+    <h2>Exemplo guiado — T01</h2>
+    <p><strong>Cenário:</strong> Ana publica três avisos.</p>
+    <p><strong>Pergunta:</strong> o DER atual permite que um usuário esteja relacionado a vários avisos?</p>
+    <p><strong>Procedimento:</strong> observe a cardinalidade USUARIO–AVISO, registre a evidência na matriz e só então decida se o teste passa ou falha. Se houver falha, corrija o modelo e repita T01.</p>
+    <p class="ok"><strong>O que importa:</strong> evidência → correção → reteste. Não basta “achar” que a cardinalidade está errada.</p>
+  </section>
+
+  <section class="painel">
+    <h2>Casos de teste</h2>
+    <div class="grade">
+      <div>
+        <h3>1º tempo — T01 a T05</h3>
+        <div class="caso"><strong>T01:</strong> Ana publica três avisos. Um usuário pode relacionar-se a vários avisos?</div>
+        <div class="caso"><strong>T02:</strong> Dois usuários podem ter o mesmo nome. O sistema identifica cada um sem depender do nome?</div>
+        <div class="caso"><strong>T03:</strong> O título “Prova de Programação” pertence a qual entidade?</div>
+        <div class="caso"><strong>T04:</strong> Vinte avisos podem pertencer à categoria “Evento”. O relacionamento representa isso?</div>
+        <div class="caso"><strong>T05:</strong> Todo aviso precisa ter data e descrição/conteúdo no lugar correto.</div>
+      </div>
+      <div>
+        <h3>2º tempo — T06 a T08</h3>
+        <div class="caso"><strong>T06:</strong> Dois avisos de um usuário e outro aviso de outro usuário, todos na mesma categoria.</div>
+        <div class="caso"><strong>T07:</strong> Alterar um aviso sem mudar a identidade de quem publicou.</div>
+        <div class="caso"><strong>T08:</strong> Categoria “Evento” existe uma única vez e se relaciona a muitos avisos.</div>
+        <h3>4º tempo — T09 a T11</h3>
+        <div class="caso"><strong>T09:</strong> Identificar autor, título, descrição, data e categoria de um aviso.</div>
+        <div class="caso"><strong>T10:</strong> Verificar se dois usuários com mesmo nome continuam distintos.</div>
+        <div class="caso"><strong>T11:</strong> Procurar atributo armazenado em entidade conceitualmente errada.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="painel">
+    <h2>Matriz de auditoria</h2>
+    <div style="overflow-x:auto">
+      <table>
+        <thead><tr><th>Caso</th><th>Resultado inicial</th><th>Evidência</th><th>Correção</th><th>Reteste</th></tr></thead>
+        <tbody>
+          <tr><td>T01–T05</td><td>PASSOU/FALHA</td><td>O que no DER comprova?</td><td>O que foi alterado?</td><td>PASSOU/FALHA</td></tr>
+          <tr><td>T06–T08</td><td>PASSOU/FALHA</td><td>O que no DER comprova?</td><td>O que foi alterado?</td><td>PASSOU/FALHA</td></tr>
+          <tr><td>T09–T11</td><td>PASSOU/FALHA</td><td>O que no DER comprova?</td><td>O que foi alterado?</td><td>PASSOU/FALHA</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="painel">
+    <h2>Entrega</h2>
+    <ul>
+      <li>DER final corrigido (<code>.drawio</code>).</li>
+      <li>Matriz de auditoria preenchida com resultado inicial, evidência, correção e reteste.</li>
+      <li>Parecer técnico: <strong>APROVADO</strong>, <strong>APROVADO COM RESSALVAS</strong> ou <strong>AINDA INCONSISTENTE</strong>.</li>
+    </ul>
+  </section>
+
+  <section class="painel">
+    <h2>Plano B</h2>
+    <p>Se o laboratório ou a internet falhar, use a imagem/DER projetado ou impresso e registre as decisões na matriz de auditoria. O objetivo permanece o mesmo: identificar a regra, apontar evidência, propor correção e retestar conceitualmente.</p>
+    <p><strong>Importante:</strong> esta prática não depende de normalização de 18/09/2026, pois a execução dessa aula ainda não está confirmada.</p>
+  </section>
+</main>
+
+<footer class="rodape-site"><div class="container"><p>CEPEF · Projeto de Banco de Dados · 2º A · 2026</p></div></footer>
+</body>
+</html>
