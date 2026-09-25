@@ -1,0 +1,28 @@
+<mxfile host="app.diagrams.net" modified="2026-09-25T00:00:00.000Z" agent="ChatGPT" version="24.7.17">
+  <diagram id="auditoria-der" name="DER-base com erros">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="usuario" value="USUARIO&#xa;id_usuario (PK)&#xa;nome&#xa;email&#xa;titulo_aviso" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="120" y="160" width="230" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="aviso" value="AVISO&#xa;id_aviso (PK)&#xa;data_aviso" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="160" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="categoria" value="CATEGORIA&#xa;id_categoria (PK)&#xa;nome_categoria" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="820" y="160" width="230" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="relUA" value="1 : 1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;fontStyle=1;" edge="1" parent="1" source="usuario" target="aviso">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="relAC" value="N : N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;startArrow=none;fontStyle=1;" edge="1" parent="1" source="aviso" target="categoria">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="nota" value="ATENÇÃO: este modelo contém erros intencionais para auditoria. Não corrija antes de executar os casos de teste." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="380" width="570" height="80" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
