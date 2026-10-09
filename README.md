@@ -1,18 +1,30 @@
-# Projeto de Banco de Dados — 2º A
+# Projeto de Banco de Dados — 2º A · CEPEF
 
-Materiais didáticos da disciplina **Projeto de Banco de Dados**, desenvolvidos com a turma do 2º A do curso Técnico em Informática para Internet do CEPEF.
+## 🟢 AULA DE HOJE — 09/10/2026 · 4º TEMPO · LABORATÓRIO
 
-O portal acompanha a evolução do projeto **Central de Avisos**, começando pela observação e organização dos dados e avançando gradualmente conforme as aulas.
+**Projeto Central de Avisos — PostgreSQL no Supabase.**
 
-## Aulas
+### 📥 SCRIPTS SQL — ACESSO DIRETO
 
-O conteúdo está organizado no `index.html` e preparado para publicação via GitHub Pages. Não há etapa de compilação: basta publicar a raiz da branch principal.
+1. **[⬇ SCRIPT 1 — CRIAR AS 6 TABELAS](https://raw.githubusercontent.com/ccamado/projeto-de-banco-de-dados/main/aulas/2026-10-09/01_criar_tabelas.sql)** — definição das tabelas e chaves (DDL).
+2. **[⬇ SCRIPT 2 — INSERIR OS DADOS](https://raw.githubusercontent.com/ccamado/projeto-de-banco-de-dados/main/aulas/2026-10-09/02_inserir_dados.sql)** — 10 registros por tabela e associações (DML).
+3. **[⬇ SCRIPT 3 — CONSULTAS E JOINS](https://raw.githubusercontent.com/ccamado/projeto-de-banco-de-dados/main/aulas/2026-10-09/03_consultas_e_testes.sql)** — consultas e testes (SELECT/JOIN).
 
-## Estrutura
+**Abra os scripts na ordem 1 → 2 → 3.** Se o navegador abrir o texto em vez de iniciar download, selecione e copie o conteúdo para o SQL Editor do Supabase.
 
-- `index.html` — portal com a lista cronológica das aulas;
-- `central-avisos-local.html` — prática inicial da Central de Avisos;
-- `central-avisos-com-id.html` — evolução do formulário com ID visível e único;
-- `aulas/` — páginas das aulas organizadas por data e tempo;
-- `css/style.css` — estilos compartilhados do portal e das aulas.
+### 📚 Acessar a aula completa
 
+- **[Abrir aula prática de 09/10 no site dos alunos](https://ccamado.github.io/projeto-de-banco-de-dados/aulas/2026-10-09-supabase.html)**
+- [Abrir portal de todas as aulas (GitHub Pages)](https://ccamado.github.io/projeto-de-banco-de-dados/)
+- [Ver página-fonte da aula no próprio GitHub](https://github.com/ccamado/projeto-de-banco-de-dados/blob/main/aulas/2026-10-09-supabase.html)
+- [Roteiro e resumos](aulas/2026-10-09/resumos-e-roteiro.md)
+
+---
+
+## Sobre o repositório
+
+Materiais da disciplina **Projeto de Banco de Dados**, turma **2º A do CEPEF**, professor Claudio Amado. O projeto de referência é a **Central de Avisos**.
+
+O arquivo `index.html` organiza cronologicamente os encontros e atividades. A pasta `aulas/` contém o conteúdo e os scripts das práticas.
+
+**Nota:** o GitHub (repositório) mostra este README na sua página inicial; o GitHub Pages (site) mostra o `index.html`. Ambos agora dão acesso à aula e aos scripts.
