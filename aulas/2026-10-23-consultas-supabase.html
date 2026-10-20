@@ -1,0 +1,18 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Consultas, filtros e relacionamentos no Supabase</title><style>body{font-family:system-ui,sans-serif;background:#f5f7fb;color:#152238;margin:0}main{max-width:850px;margin:auto;padding:28px 18px}section{background:white;padding:22px;border-radius:14px;margin:16px 0;border:1px solid #dde4ef}a{color:#1253a4}li{margin:10px 0}pre{background:#152238;color:#fff;padding:18px;border-radius:10px;white-space:pre-wrap;overflow:auto;font-size:14px}button{padding:10px 18px;background:#1253a4;color:white;border:0;border-radius:8px;cursor:pointer}.note{background:#fff6dd;padding:12px;border-left:4px solid #cc8b13}</style></head><body><main><p><a href="../index.html" onclick="if(history.length>1){history.back();return false}">← Voltar ao índice</a></p><h1>Consultas, filtros e relacionamentos no Supabase</h1><p>23/10/2026 · 2º A · Projeto de Banco de Dados · 3 tempos · Prof. Claudio Amado · CEPEF</p><section><h2>Objetivo e contexto</h2><p>Dar continuidade aos conhecimentos já desenvolvidos no bimestre, executar testes verificáveis e documentar resultados sem repetir etapas anteriores.</p><p class="note">Material produzido para aula planejada; sua publicação não confirma aula ministrada. Não exponha senhas, dados reais ou chaves administrativas.</p><p><a href="https://supabase.com/dashboard" target="_blank" rel="noopener">Abrir o SQL Editor do Supabase ↗</a></p></section><section><h2>Roteiro da prática</h2><ol><li>Abra seu próprio projeto Supabase e confirme a estrutura criada na atividade de 09/10.</li><li>No SQL Editor, veja os nomes reais das tabelas; execute consultas SELECT simples sobre sua tabela de avisos.</li><li>Adicione WHERE e ORDER BY. Em seguida, faça uma consulta JOIN usando as chaves reais do seu DER.</li><li>Anote quantidade de linhas retornadas e explique um resultado vazio. Salve o arquivo SQL e uma captura sem dados pessoais.</li></ol></section><section><h2>Código, comandos ou modelo de trabalho</h2><button type="button" onclick="navigator.clipboard.writeText(document.querySelector('pre').innerText).then(()=>this.textContent='Copiado!')">Copiar conteúdo</button><pre>-- Adapte os identificadores se o script de 09/10 usou nomes diferentes.
+-- 1. Leia avisos já cadastrados.
+SELECT * FROM avisos LIMIT 10;
+
+-- 2. Ordene pelo identificador (confira se existe coluna id).
+SELECT * FROM avisos ORDER BY id DESC LIMIT 10;
+
+-- 3. Investigue a estrutura das tabelas antes do JOIN.
+SELECT table_name, column_name, data_type
+FROM information_schema.columns
+WHERE table_schema = 'public'
+ORDER BY table_name, ordinal_position;
+
+-- 4. JOIN: preencher somente após conferir o relacionamento no DER.
+-- SELECT a.id, a.titulo, c.nome
+-- FROM avisos AS a
+-- INNER JOIN categorias AS c ON a.categoria_id = c.id;
+-- Atenção: os nomes do JOIN acima são EXEMPLOS, não esquema confirmado.</pre></section><section><h2>Entregas e critérios</h2><p><strong>Entregue:</strong> arquivo de código, script ou quadro comparativo; evidência dos testes; uma conclusão de 3 a 5 linhas descrevendo o que funcionou, o que falhou e como corrigiu.</p><p>Critérios: execução/conceitos corretos (40%), testes e interpretação (30%), documentação (20%), autonomia e cooperação (10%).</p><h2>Sem computador ou internet</h2><p>Realize o roteiro em papel: acompanhe cada linha, simule os resultados, identifique um erro possível e escreva como seria testado.</p></section></main></body></html>
