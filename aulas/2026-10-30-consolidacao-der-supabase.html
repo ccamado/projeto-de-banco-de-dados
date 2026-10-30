@@ -1,0 +1,52 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>30/10/2026 · Central de Avisos · 3 aulas</title><style>
+:root{font-family:system-ui,Arial,sans-serif;color:#17334a;background:#edf5fc}body{margin:0}header{background:#0b3155;color:white;padding:28px 5vw}main{max-width:1100px;margin:30px auto;padding:0 18px}h1{margin:0}h2{color:#0b5772}section{background:white;border-radius:16px;padding:24px;margin:20px 0;box-shadow:0 5px 24px #15395b16}section small{color:#55708b}.erd{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}.entity{border:2px solid #aaa;border-radius:10px;overflow:hidden;display:flex;flex-direction:column;background:#f8fbff}.entity b{background:#1e5b9c;color:white;padding:12px}.entity span{padding:9px 12px;border-top:1px solid #dee5eb}.green b{background:#168453}.purple b{background:#713cac}.red b{background:#c63848}.orange b{background:#bd650b}.relations{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.relations strong{padding:10px;border-radius:9px;background:#dff5ee}.note{padding:14px;background:#fff0cf;border-left:5px solid #d58b19}.links{display:flex;gap:12px;flex-wrap:wrap}a{color:#095f91}a.download{display:inline-block;padding:12px;background:#176a5b;color:white;border-radius:8px;text-decoration:none}pre{overflow:auto;background:#10253b;color:#dcf6ee;padding:17px;border-radius:10px}ul{line-height:1.8}footer{text-align:center;padding:30px;color:#637183}</style></head><body>
+<header><h1>Central de Avisos — 30/10/2026</h1><p>CEPEF · 2º A · Projeto de Banco de Dados · RPP · três aulas em sala, 50 min cada · não introduzir conteúdo novo</p></header><main>
+<section><h2>DER de referência — 5 tabelas e 4 relações 1:N</h2><p>O modelo lógico orienta a criação das tabelas. Para visualizar as ligações no Supabase, as FKs precisam ser declaradas.</p><div class="erd">
+ <div class="entity blue"><b>USUARIO</b><span>🔑 id_usuario (PK)</span><span>nome</span><span>tipo</span></div>
+ <div class="entity green"><b>CATEGORIA</b><span>🔑 id_categoria (PK)</span><span>nome</span></div>
+ <div class="entity purple"><b>TURMA</b><span>🔑 id_turma (PK)</span><span>nome</span></div>
+ <div class="entity red"><b>AVISO</b><span>🔑 id_aviso (PK)</span><span>titulo · data_aviso</span><span>🔗 id_usuario (FK)</span><span>🔗 id_categoria (FK)</span></div>
+ <div class="entity orange"><b>AVISO_TURMA</b><span>🔑🔗 id_aviso (PK/FK)</span><span>🔑🔗 id_turma (PK/FK)</span></div>
+ </div><div class="relations"><strong>USUARIO 1 → N AVISO</strong><strong>CATEGORIA 1 → N AVISO</strong><strong>AVISO 1 → N AVISO_TURMA</strong><strong>TURMA 1 → N AVISO_TURMA</strong></div><p class="note">AVISO N ↔ N TURMA: relação resolvida pela tabela associativa AVISO_TURMA, com chave primária composta (id_aviso, id_turma).</p></section>
+<section><small>1º tempo · 50 minutos · sala de aula · PLANEJADO</small><h2>Aula 1 · Estrutura e Supabase</h2><p>Objetivos: identificar schema, tabelas, campos, PK e FK; interpretar o DER existente.</p><p><strong>Roteiro cronometrado:</strong> 00–08 min: retomada do modelo lógico. 08–20 min: navegar pelo Supabase, Database, Table Editor e schemas. 20–30 min: apontar PK/FK. 30–42 min: registro e diagrama no caderno. 42–50 min: localizar quatro relações.</p><p class="note"><strong>Registro para o caderno:</strong> Copie: banco relacional organiza dados em tabelas. PK identifica registros; FK conecta tabelas. Schema agrupa estruturas.</p><p><strong>Verificação:</strong> Apontar duas FKs e explicar para quais PKs elas apontam.</p></section><section><small>2º tempo · 50 minutos · sala de aula · PLANEJADO</small><h2>Aula 2 · Construção com DDL</h2><p>Objetivos: compreender CREATE TABLE, tipos INTEGER/VARCHAR/DATE, NOT NULL, PK, FK e ALTER TABLE.</p><p><strong>Roteiro cronometrado:</strong> 00–08 min: revisão. 08–20 min: comentar o script 01. 20–30 min: executar no SQL Editor (projeto de teste). 30–40 min: mostrar ALTER TABLE. 40–50 min: cópia do trecho comentado e avaliação oral.</p><p class="note"><strong>Registro para o caderno:</strong> Copie: CREATE cria tabelas, ALTER modifica a estrutura e DROP remove tabelas. Restrições organizam e protegem a integridade.</p><p><strong>Verificação:</strong> Identificar o que muda com ALTER e o que ficaria perigoso com DROP.</p></section><section><small>3º tempo · 50 minutos · sala de aula · PLANEJADO</small><h2>Aula 3 · Relações e validação</h2><p>Objetivos: interpretar 1:N e N:N, tabela associativa, conferir Visual Schema e problemas de FK.</p><p><strong>Roteiro cronometrado:</strong> 00–10 min: comparar modelo lógico. 10–22 min: Visual Schema. 22–32 min: erro proposital de FK em código não executado. 32–42 min: checklist de comparação e registro. 42–50 min: fechamento.</p><p class="note"><strong>Registro para o caderno:</strong> Copie: usuario 1:N aviso; categoria 1:N aviso; aviso 1:N aviso_turma; turma 1:N aviso_turma. Assim aviso N:N turma.</p><p><strong>Verificação:</strong> Explicar por que a tabela associativa tem duas FKs e como forma a relação N:N.</p></section>
+<section><h2>Scripts executáveis para o professor</h2><p>Utilize um projeto Supabase de teste. Ordem: 01 → 02 → 03 → 04. Os comandos de manipulação servem para mostrar resultados; o ensino formal de LMD e álgebra relacional está previsto para 06/11.</p><div class="links"><a class="download" href="2026-10-30/01_criar_estrutura.sql" download>01_criar_estrutura.sql</a><a class="download" href="2026-10-30/02_dados_ficticios_professor.sql" download>02_dados_ficticios_professor.sql</a><a class="download" href="2026-10-30/03_consultas_demonstrativas.sql" download>03_consultas_demonstrativas.sql</a><a class="download" href="2026-10-30/04_alteracao_controlada.sql" download>04_alteracao_controlada.sql</a></div><h3>01 — DDL completo</h3><pre>-- CEPEF 2A | 30/10/2026 | demonstração em projeto de teste
+-- Executar uma vez, preferencialmente num projeto Supabase vazio.
+CREATE SCHEMA IF NOT EXISTS central_avisos_demo;
+CREATE TABLE central_avisos_demo.usuario (id_usuario INTEGER PRIMARY KEY, nome VARCHAR(100) NOT NULL, tipo VARCHAR(30) NOT NULL);
+CREATE TABLE central_avisos_demo.categoria (id_categoria INTEGER PRIMARY KEY, nome VARCHAR(60) NOT NULL UNIQUE);
+CREATE TABLE central_avisos_demo.turma (id_turma INTEGER PRIMARY KEY, nome VARCHAR(20) NOT NULL UNIQUE);
+CREATE TABLE central_avisos_demo.aviso (
+ id_aviso INTEGER PRIMARY KEY, titulo VARCHAR(150) NOT NULL, data_aviso DATE NOT NULL,
+ id_usuario INTEGER NOT NULL REFERENCES central_avisos_demo.usuario(id_usuario),
+ id_categoria INTEGER NOT NULL REFERENCES central_avisos_demo.categoria(id_categoria)
+);
+CREATE TABLE central_avisos_demo.aviso_turma (
+ id_aviso INTEGER NOT NULL REFERENCES central_avisos_demo.aviso(id_aviso),
+ id_turma INTEGER NOT NULL REFERENCES central_avisos_demo.turma(id_turma),
+ PRIMARY KEY (id_aviso,id_turma)
+);</pre><h3>02 — Dados fictícios: 4 usuários, 4 categorias, 3 turmas, 6 avisos, 8 associações (25 linhas)</h3><pre>-- Preparação exclusiva do professor: dados fictícios, não ensinar INSERT na RPP
+INSERT INTO central_avisos_demo.usuario VALUES (1,'Ana','Professora'),(2,'Carlos','Direção'),(3,'Marina','Coordenação'),(4,'Paulo','TI');
+INSERT INTO central_avisos_demo.categoria VALUES (1,'Avaliação'),(2,'Evento'),(3,'Manutenção'),(4,'Comunicado');
+INSERT INTO central_avisos_demo.turma VALUES (1,'1A'),(2,'2A'),(3,'3A');
+INSERT INTO central_avisos_demo.aviso VALUES
+(1,'Revisão para avaliação','2026-10-26',1,1),
+(2,'Reunião de representantes','2026-10-27',2,2),
+(3,'Manutenção do laboratório','2026-10-28',4,3),
+(4,'Entrega de atividades','2026-10-29',3,4),
+(5,'Avaliação de Banco de Dados','2026-11-13',1,1),
+(6,'Organização da feira','2026-11-06',2,2);
+INSERT INTO central_avisos_demo.aviso_turma VALUES (1,2),(2,1),(2,2),(2,3),(3,2),(4,3),(5,2),(6,1);</pre><h3>03 — Consultas demonstrativas</h3><pre>-- Só para demonstração dos resultados; SELECT/JOIN serão estudados depois
+SELECT a.id_aviso,a.titulo,u.nome AS responsavel,c.nome AS categoria
+FROM central_avisos_demo.aviso a
+JOIN central_avisos_demo.usuario u ON u.id_usuario=a.id_usuario
+JOIN central_avisos_demo.categoria c ON c.id_categoria=a.id_categoria
+ORDER BY a.id_aviso;
+SELECT a.titulo,t.nome AS turma
+FROM central_avisos_demo.aviso_turma at
+JOIN central_avisos_demo.aviso a ON a.id_aviso=at.id_aviso
+JOIN central_avisos_demo.turma t ON t.id_turma=at.id_turma
+ORDER BY a.id_aviso,t.id_turma;</pre><h3>04 — ALTER TABLE</h3><pre>-- Demonstrar uma única vez, depois observar a nova coluna no Table Editor
+ALTER TABLE central_avisos_demo.aviso ADD COLUMN IF NOT EXISTS local_evento VARCHAR(100);
+-- DROP TABLE é destrutivo: NÃO EXECUTAR durante a demonstração.
+-- DROP TABLE central_avisos_demo.aviso;</pre></section><section><h2>Plano B (sem internet)</h2><p>Projetar ou imprimir este DER e os scripts. Estudantes localizam FKs e cardinalidades, comparam a estrutura e marcam uma tabela associativa incompleta. Evidência: mini-der corrigido + registro de duas verificações.</p><p>Estado: MATERIAL PREPARADO. A publicação não significa aula ministrada.</p></section>
+</main><footer>Professor Claudio Amado · CEPEF · 2026</footer></body></html>
